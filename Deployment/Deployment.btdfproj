@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Deployment Framework for BizTalk
+  Copyright (C) Thomas F. Abraham, Scott Colestock
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Installer">
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">x86</Platform>
+    <SchemaVersion>1.0</SchemaVersion>
+    <ProjectName>KafkaAdapter</ProjectName>
+    <ProjectVersion>1.0</ProjectVersion>
+    <CreateStartMenuShortcuts>False</CreateStartMenuShortcuts>
+    <IncludeSchemas>True</IncludeSchemas>
+    <IncludeOrchestrations>False</IncludeOrchestrations>
+    <IncludeTransforms>False</IncludeTransforms>
+    <IncludeComponents>True</IncludeComponents>
+    <IncludeMessagingBindings>False</IncludeMessagingBindings>
+    <UsingMasterBindings>True</UsingMasterBindings>
+    <RequireXmlPreprocessDirectives>False</RequireXmlPreprocessDirectives>
+    <ApplyXmlEscape>True</ApplyXmlEscape>
+    <SkipIISReset>True</SkipIISReset>
+    <SkipHostInstancesRestart>True</SkipHostInstancesRestart>
+    <EnableAllReceiveLocationsOnDeploy>False</EnableAllReceiveLocationsOnDeploy>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- Properties related to building an MSI for server deployments -->
+    <!-- BizTalk App Version Upgrade -->
+    <!--   For each new product release to be deployed to your BizTalk servers: -->
+    <!--     1) Increment ProductVersion -->
+    <!--     2) Generate a new GUID and update ProductId with the new GUID -->
+    <!--   This allows the new MSI to automatically uninstall (not undeploy!) the old MSI and install the new one. -->
+    <ProductVersion>1.0.16</ProductVersion>
+    <ProductId>C86EF595-112E-4767-B922-BBA52EF88613</ProductId>
+    <!-- BizTalk App Version Upgrade -->
+    <ProductName>KafkaAdapter</ProductName>
+    <Manufacturer>Vikas Bhardwaj</Manufacturer>
+    <PackageDescription>KafkaAdapter</PackageDescription>
+    <!-- NEVER change the ProductUpgradeCode. -->
+    <ProductUpgradeCode>221F1DF5-1176-4A85-9CCB-6595D6791809</ProductUpgradeCode>
+  </PropertyGroup>
+  <!-- Under TFS Team Build, set CustomizableOutDir property to true in TFS 2005/2008/2010 UpgradeTemplate. -->
+  <!-- With a workflow build, copy the default template then modify the MSBuild task for the solution build. Set OutDir to blank and -->
+  <!-- CommandLineArguments to String.Format("/p:SkipInvalidConfigurations=true;TeamBuildOutDir=""{0}"" {1}", BinariesDirectory, MSBuildArguments). -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DeploymentFrameworkTargetsPath>$(MSBuildExtensionsPath)\DeploymentFrameworkForBizTalk\5.0\</DeploymentFrameworkTargetsPath>
+    <OutputPath Condition="'$(TeamBuildOutDir)' == ''">bin\Debug\</OutputPath>
+    <OutputPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</OutputPath>
+    <SettingsFilePath>$(ProjectDir)EnvironmentSettings\DEV_Settings.xml</SettingsFilePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DeploymentFrameworkTargetsPath>$(MSBuildExtensionsPath)\DeploymentFrameworkForBizTalk\5.0\</DeploymentFrameworkTargetsPath>
+    <OutputPath Condition="'$(TeamBuildOutDir)' == ''">bin\Release\</OutputPath>
+    <OutputPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</OutputPath>
+    <SettingsFilePath>$(ProjectDir)EnvironmentSettings\DEV_Settings.xml</SettingsFilePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Server'">
+    <DeploymentFrameworkTargetsPath>Framework\</DeploymentFrameworkTargetsPath>
+    <!-- Get our PDBs into the GAC so we get file/line number information in stack traces. -->
+    <DeployPDBsToGac>false</DeployPDBsToGac>
+  </PropertyGroup>
+  <ItemGroup>
+    <PropsFromEnvSettings Include="SsoAppUserGroup;SsoAppAdminGroup" />
+    <Components Include="KafkaAdapter.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </Components>
+    <Components Include="AdapterFramework.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\AdapterFramework\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </Components>
+    <Components Include="Microsoft.BizTalk.CAT.BestPractices.Framework.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\Microsoft.BizTalk.CAT.BestPractices.Framework\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </Components>
+    <Components Include="KafkaAdapter.Components.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </Components>
+    <Components Include="KafkaAdapter.Management.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Management\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </Components>
+    <ExternalAssemblies Include="Confluent.Kafka.StrongName.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </ExternalAssemblies>
+    <ExternalAssemblies Include="System.Buffers.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </ExternalAssemblies>
+    <ExternalAssemblies Include="System.Memory.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </ExternalAssemblies>
+    <ExternalAssemblies Include="System.Numerics.Vectors.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </ExternalAssemblies>
+    <ExternalAssemblies Include="System.Runtime.CompilerServices.Unsafe.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)</LocationPath>
+    </ExternalAssemblies>
+    <AdditionalFiles Include="librdkafka.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)\librdkafka\x64</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)librdkafka\x64</LocationPath>
+    </AdditionalFiles>
+    <AdditionalFiles Include="librdkafkacpp.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)\librdkafka\x64</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)librdkafka\x64</LocationPath>
+    </AdditionalFiles>
+    <AdditionalFiles Include="msvcr120.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)\librdkafka\x64</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)librdkafka\x64</LocationPath>
+    </AdditionalFiles>
+    <AdditionalFiles Include="zlib.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)\librdkafka\x64</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)librdkafka\x64</LocationPath>
+    </AdditionalFiles>
+
+    <AdditionalFiles Include="libzstd.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)\librdkafka\x64</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)librdkafka\x64</LocationPath>
+    </AdditionalFiles>   
+    <AdditionalFiles Include="msvcp120.dll">
+      <LocationPath Condition="'$(TeamBuildOutDir)' == ''">..\KafkaAdapter.Components\bin\$(Configuration)\librdkafka\x64</LocationPath>
+      <LocationPath Condition="'$(TeamBuildOutDir)' != ''">$(TeamBuildOutDir)librdkafka\x64</LocationPath>
+    </AdditionalFiles>
+  </ItemGroup>
+  <!-- !!! TODO !!! -->
+  <!-- Add ItemGroup elements that contain one or more Schemas, Orchestrations, Transforms, etc. elements that describe -->
+  <!-- the specific artifacts in your solution that need to be deployed. Use IntelliSense as a guide. -->
+  <ItemGroup>
+  </ItemGroup>
+  <!-- !!! TODO !!! -->
+  <Import Project="$(DeploymentFrameworkTargetsPath)BizTalkDeploymentFramework.targets" />
+  <!--
+    The Deployment Framework automatically packages most files into the server install MSI.
+    However, if there are special folders that you need to include in the MSI, you can
+    copy them to the folder $(RedistDir) in the CustomRedist target.
+    To include individual files, add an ItemGroup with AdditionalFiles elements.
+  -->
+  <Target Name="CustomRedist">
+    <Message Text="Copying Reg Files..."></Message>
+    <Copy SourceFiles="KAFKA.reg" DestinationFolder="$(RedistDir)\Deployment"></Copy>
+    <Copy SourceFiles="KAFKA_wow6432.reg" DestinationFolder="$(RedistDir)\Deployment"></Copy>
+    <Copy SourceFiles="KAFKA-remove.reg" DestinationFolder="$(RedistDir)\Deployment"></Copy>
+    <Copy SourceFiles="KAFKA_wow6432-remove.reg" DestinationFolder="$(RedistDir)\Deployment"></Copy>
+
+  </Target>
+  <Target Name="CustomPostInstaller">
+    <Message Text="Copying C client for kafka to confluent kafka gac folder"></Message>
+    <Copy Condition="'$(TeamBuildOutDir)' == ''"  SourceFiles="$(RedistDir)\librdkafka.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\librdkafkacpp.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\msvcr120.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\zlib.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>    
+    <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\libzstd.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>    
+    <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\msvcp120.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>      
+  </Target>
+  <Target Name="CustomPostDeployTarget">
+    <Message Text="Copying C client for kafka to confluent kafka gac folder"></Message>
+    <Copy Condition="'$(InstallDir)' != ''" SourceFiles="$(InstallDir)\librdkafka.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Copy Condition="'$(InstallDir)' != ''" SourceFiles="$(InstallDir)\librdkafkacpp.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Copy Condition="'$(InstallDir)' != ''" SourceFiles="$(InstallDir)\msvcr120.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Copy Condition="'$(InstallDir)' != ''" SourceFiles="$(InstallDir)\zlib.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Copy Condition="'$(InstallDir)' != ''" SourceFiles="$(InstallDir)\libzstd.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Copy Condition="'$(InstallDir)' != ''" SourceFiles="$(InstallDir)\msvcp120.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Message Text="Registring the adapter"></Message>
+    <Exec Condition="'$(InstallDir)' != ''" Command="Regedit -s %22$(InstallDir)\Deployment\KAFKA.reg%22"></Exec>
+    <Exec Condition="'$(InstallDir)' != ''" Command="Regedit -s %22$(InstallDir)\Deployment\KAFKA_wow6432.reg%22"></Exec>
+
+  </Target>
+  <Target Name="CustomUndeployTarget">
+    <Delete Files="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e\librdkafka.dll"></Delete>
+    <Delete Files="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e\librdkafkacpp.dll"></Delete>
+    <Delete Files="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e\msvcr120.dll"></Delete>
+    <Delete Files="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e\zlib.dll"></Delete>
+    <Delete Files="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e\libzstd.dll"></Delete>
+    <Delete Files="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e\msvcp120.dll"></Delete>
+
+    <Message Text="Unregistring the adapter"></Message>
+    <Exec Command="Regedit -s %22$(InstallDir)\Deployment\KAFKA-remove.reg%22"></Exec>
+    <Exec Command="Regedit -s %22$(InstallDir)\Deployment\KAFKA_wow6432-remove.reg%22"></Exec>
+
+  </Target>
+
+</Project>

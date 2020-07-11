@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterFramework", "AdapterFramework\AdapterFramework.csproj", "{25E2D4D5-6011-49C3-A423-D7374FB6F4A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.BizTalk.CAT.BestPractices.Framework", "Microsoft.BizTalk.CAT.BestPractices.Framework\Microsoft.BizTalk.CAT.BestPractices.Framework.csproj", "{13E20AE8-9515-4B37-B71B-3DFC70C9B831}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaAdapter", "KafkaAdapter\KafkaAdapter.csproj", "{67C90660-5DCD-4837-A11E-90E59A48EFFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "microsoft", "microsoft", "{E9FD936C-88A5-4DF6-B5A6-100F175517C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaAdapter.Components", "KafkaAdapter.Components\KafkaAdapter.Components.csproj", "{58145610-D81B-4F23-BE79-4ED9A386958C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaAdapter.Management", "KafkaAdapter.Management\KafkaAdapter.Management.csproj", "{F31AEABA-6A01-41ED-9FF7-26AC9E3F094C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaAdapter.Schemas", "KafkaAdapter.Schemas\KafkaAdapter.Schemas.btproj", "{A0BB29E2-9E02-4D6B-8494-959E08954859}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployment", "deployment", "{74B5D635-FDD1-4E37-B2AD-344FE7371A45}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment\Deployment.btdfproj = Deployment\Deployment.btdfproj
+		Deployment\InstallWizard.xml = Deployment\InstallWizard.xml
+		Deployment\KAFKA-remove.reg = Deployment\KAFKA-remove.reg
+		Deployment\KAFKA.reg = Deployment\KAFKA.reg
+		Deployment\KAFKA_wow6432-remove.reg = Deployment\KAFKA_wow6432-remove.reg
+		Deployment\KAFKA_wow6432.reg = Deployment\KAFKA_wow6432.reg
+		Deployment\License.rtf = Deployment\License.rtf
+		Deployment\PortBindingsMaster.xml = Deployment\PortBindingsMaster.xml
+		Deployment\SettingsFileGenerator.xml = Deployment\SettingsFileGenerator.xml
+		Deployment\UnInstallWizard.xml = Deployment\UnInstallWizard.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AF0A857A-EC89-4494-AD14-1122A18EDA6B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25E2D4D5-6011-49C3-A423-D7374FB6F4A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E2D4D5-6011-49C3-A423-D7374FB6F4A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E2D4D5-6011-49C3-A423-D7374FB6F4A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E2D4D5-6011-49C3-A423-D7374FB6F4A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13E20AE8-9515-4B37-B71B-3DFC70C9B831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13E20AE8-9515-4B37-B71B-3DFC70C9B831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13E20AE8-9515-4B37-B71B-3DFC70C9B831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13E20AE8-9515-4B37-B71B-3DFC70C9B831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C90660-5DCD-4837-A11E-90E59A48EFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C90660-5DCD-4837-A11E-90E59A48EFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C90660-5DCD-4837-A11E-90E59A48EFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C90660-5DCD-4837-A11E-90E59A48EFFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58145610-D81B-4F23-BE79-4ED9A386958C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58145610-D81B-4F23-BE79-4ED9A386958C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58145610-D81B-4F23-BE79-4ED9A386958C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58145610-D81B-4F23-BE79-4ED9A386958C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F31AEABA-6A01-41ED-9FF7-26AC9E3F094C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F31AEABA-6A01-41ED-9FF7-26AC9E3F094C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F31AEABA-6A01-41ED-9FF7-26AC9E3F094C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F31AEABA-6A01-41ED-9FF7-26AC9E3F094C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BB29E2-9E02-4D6B-8494-959E08954859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0BB29E2-9E02-4D6B-8494-959E08954859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0BB29E2-9E02-4D6B-8494-959E08954859}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A0BB29E2-9E02-4D6B-8494-959E08954859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0BB29E2-9E02-4D6B-8494-959E08954859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BB29E2-9E02-4D6B-8494-959E08954859}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{25E2D4D5-6011-49C3-A423-D7374FB6F4A7} = {E9FD936C-88A5-4DF6-B5A6-100F175517C6}
+		{13E20AE8-9515-4B37-B71B-3DFC70C9B831} = {E9FD936C-88A5-4DF6-B5A6-100F175517C6}
+	EndGlobalSection
+EndGlobal

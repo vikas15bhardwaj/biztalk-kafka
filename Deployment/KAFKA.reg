@@ -1,0 +1,75 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\CLSID\{0D1E9A25-0EF2-4833-8E3A-60543325A116}]
+@="KAFKA adapter"
+
+[HKEY_CLASSES_ROOT\CLSID\{0D1E9A25-0EF2-4833-8E3A-60543325A116}\BizTalk]
+@="BizTalk"
+'Type of the transport adapter
+"TransportType"="KAFKA"
+
+'Constraints define the capabilities of the adapter: e.g send, receive, request-response, etc
+"Constraints"=dword:3C0B
+
+'============= Registration for receive side of adapter ==============
+'Adapter framwork property page for receive handler configuration
+"InboundProtocol_PageProv"="{2DE93EE6-CB01-4007-93E9-C3D71689A281}"
+
+'Adapter framework property page for receive location configuration
+"ReceiveLocation_PageProv"="{2DE93EE6-CB01-4007-93E9-C3D71689A280}"
+
+'Class ID of the class that implements receiving part of adapter
+"InboundEngineCLSID"="{C3E34184-237D-427B-BFD7-D6F0E36B044F}"
+
+'Type name of the class that implements receiving part of the adapter
+"InboundTypeName"="KafkaAdapter.KafkaReceiver"
+
+'Path to the assembly that implements receiving part of the adapter
+"InboundAssemblyPath"="C:\\Windows\\Microsoft.NET\\assembly\\GAC_MSIL\\KafkaAdapter\\v4.0_1.0.0.0__9d25acaccb929749\\KafkaAdapter.dll"
+
+'SSO registration of the adapter framework property page for receive handler
+"ReceiveHandlerPropertiesXML"="<CustomProps><AdapterConfig vt=\"8\"/></CustomProps>"
+
+'SSO registration of the adapter framework property page for receive location
+"ReceiveLocationPropertiesXML"="<CustomProps><AdapterConfig vt=\"8\"/></CustomProps>"
+'============= End of registration for receive side of adapter ==============
+
+'============= Registration for send side of adapter ==============
+'Adapter framwork property page for send handler configuration
+"OutboundProtocol_PageProv"="{2DE93EE6-CB01-4007-93E9-C3D71689A283}"
+
+'Adapter framework property page for send location configuration
+"TransmitLocation_PageProv"="{2DE93EE6-CB01-4007-93E9-C3D71689A282}"
+
+'Class ID of the class that implements send part of adapter
+"OutboundEngineCLSID"="{B3100D72-56D5-4997-A166-E03381AB08A9}"
+
+'Type name of the class that implements send part of the adapter
+"OutboundTypeName"="KafkaAdapter.KafkaTransmitter"
+
+'Path to the assembly that implements sending part of the adapter
+"OutboundAssemblyPath"="C:\\Windows\\Microsoft.NET\\assembly\\GAC_MSIL\\KafkaAdapter\\v4.0_1.0.0.0__9d25acaccb929749\\KafkaAdapter.dll"
+
+'URL prefixes used for dynamic port transport resolution
+"AliasesXML"="<AdapterAliasList><AdapterAlias>kafka://</AdapterAlias></AdapterAliasList>"
+
+'SSO registration of the adapter framework property page for send handler
+"SendHandlerPropertiesXML"="<CustomProps><AdapterConfig vt=\"8\"/></CustomProps>"
+
+'SSO registration of the adapter framework property page for send location
+"SendLocationPropertiesXML"="<CustomProps><AdapterConfig vt=\"8\"/></CustomProps>"
+'============= End of registration for send side of adapter ==============
+
+'Namespace of the adapter properties. The properties will be stored on message context under this namespace
+"PropertyNameSpace"="http://biztalk-adapter/kafka-properties/2020/1"
+
+'Type name of the class that provides UI for adapter property pages
+"AdapterMgmtTypeName"="KafkaAdapter.Management.AdapterManagement"
+
+'Path to the assembly that implments UI for adapter property pages
+"AdapterMgmtAssemblyPath"="C:\\Windows\\Microsoft.NET\\assembly\\GAC_MSIL\\KafkaAdapter.Management\\v4.0_1.0.0.0__9d25acaccb929749\\KafkaAdapter.Management.dll"
+
+
+[HKEY_CLASSES_ROOT\CLSID\{0D1E9A25-0EF2-4833-8E3A-60543325A116}\Implemented Categories]
+
+[HKEY_CLASSES_ROOT\CLSID\{0D1E9A25-0EF2-4833-8E3A-60543325A116}\Implemented Categories\{7F46FC3E-3C2C-405B-A47F-8D17942BA8F9}]

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="TraceManager provides static entry points into ComponentTraceProvider instances for each component type">
+    <Position X="5.771" Y="0.5" Height="0.615" Width="2.064" />
+  </Comment>
+  <Comment CommentText="ComponentTraceProvider is a wrapper for Microsoft.BizTalk.Diagnostics.TraceProvider">
+    <Position X="3.209" Y="0.5" Height="0.482" Width="2.429" />
+  </Comment>
+  <Comment CommentText="IComponentTraceProvider defines a set of supported instrumentation methods">
+    <Position X="0.75" Y="0.5" Height="0.482" Width="2.262" />
+  </Comment>
+  <Class Name="Microsoft.BizTalk.CAT.BestPractices.Framework.Instrumentation.ComponentTraceProvider">
+    <Position X="3.25" Y="1.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>YAIAAIAAEBACBAEDAAFAJAIAlBABAAoCAIAAEAMEKQg=</HashCode>
+      <FileName>Instrumentation\ComponentTraceProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="Microsoft.BizTalk.CAT.BestPractices.Framework.Instrumentation.TraceManager">
+    <Position X="5.75" Y="1.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>kACUAAEgQEAAQAAAAAAAAAEAQAAAAEACAAAgAAAQAgA=</HashCode>
+      <FileName>Instrumentation\TraceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Microsoft.BizTalk.CAT.BestPractices.Framework.Instrumentation.IComponentTraceProvider">
+    <Position X="0.75" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAABAAAAAAAAAAAhAABAAAAAAAAAAEACQA=</HashCode>
+      <FileName>Instrumentation\IComponentTraceProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
