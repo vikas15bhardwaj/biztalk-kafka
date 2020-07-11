@@ -1,10 +1,9 @@
 # BizTalk KAFKA Adapter
-BizTalk Kafka adapter provides Send and Receive Adapaters to send messages to Kafka Broker and receive messages from Kafka broker respectively.
+BizTalk Kafka adapter provides integration with Kafka broker to send and receive messages from kafka topics. 
 
-# Configure Send Adapter
+# Configure Send Port
 Coming soon
 
-# Configure Receive Adapter
+# Configure Receive Location
 Coming soon
-
 
