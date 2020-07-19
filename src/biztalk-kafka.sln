@@ -37,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "releases", "releases", "{54
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{D6035182-92DB-4448-A4B4-31B0D7C98F68}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Global
