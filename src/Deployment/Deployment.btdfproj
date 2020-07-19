@@ -30,7 +30,7 @@
     <!--     1) Increment ProductVersion -->
     <!--     2) Generate a new GUID and update ProductId with the new GUID -->
     <!--   This allows the new MSI to automatically uninstall (not undeploy!) the old MSI and install the new one. -->
-    <ProductVersion>1.0.16</ProductVersion>
+    <ProductVersion>1.0.0</ProductVersion>
     <ProductId>C86EF595-112E-4767-B922-BBA52EF88613</ProductId>
     <!-- BizTalk App Version Upgrade -->
     <ProductName>KafkaAdapter</ProductName>
@@ -155,7 +155,8 @@
     <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\msvcr120.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
     <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\zlib.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>    
     <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\libzstd.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>    
-    <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\msvcp120.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>      
+    <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="$(RedistDir)\msvcp120.dll" DestinationFolder="$(windir)\Microsoft.NET\assembly\GAC_MSIL\Confluent.Kafka.StrongName\v4.0_1.1.0.0__12c514ca49093d1e"></Copy>
+    <Copy Condition="'$(TeamBuildOutDir)' == ''" SourceFiles="..\Deployment\bin\$(Configuration)\KafkaAdapter.msi" DestinationFolder="..\..\releases\$(ProductVersion)"></Copy>
   </Target>
   <Target Name="CustomPostDeployTarget">
     <Message Text="Copying C client for kafka to confluent kafka gac folder"></Message>
